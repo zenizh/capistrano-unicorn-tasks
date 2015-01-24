@@ -1,5 +1,7 @@
 # Unicap
 
+[![Gem Version](https://badge.fury.io/rb/unicap.svg)](http://badge.fury.io/rb/unicap)
+
 Unicap is capistrano tasks for unicorn with Rails application.
 It just adds three `cap` tasks, `unicorn:start`, `unicorn:stop` and `unicorn:restart`.
 
