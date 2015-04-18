@@ -47,7 +47,9 @@ namespace :unicorn do
       if pid_exists? && pid_running?
         info 'Unicorn is running ...'
       else
-        remove_pid if pid_exists?
+        if pid_exists?
+          remove_pid
+        end
 
         start_unicorn
       end
