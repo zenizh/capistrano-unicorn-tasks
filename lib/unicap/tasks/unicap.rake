@@ -1,3 +1,5 @@
+require 'rake'
+
 namespace :load do
   task :defaults do
     set :unicorn_config, -> { File.join(current_path, 'config/unicorn.rb') }

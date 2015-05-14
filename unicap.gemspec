@@ -15,4 +15,5 @@ Gem::Specification.new do |s|
   s.files = `git ls-files -z`.split("\x0")
 
   s.add_dependency 'capistrano'
+  s.add_dependency 'rake'
 end
