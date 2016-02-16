@@ -1,8 +1,8 @@
 namespace :load do
   task :defaults do
-    set :unicorn_config, -> { File.join(current_path, 'config/unicorn.rb') }
-    set :unicorn_pid,    -> { File.join(current_path, 'tmp/pids/unicorn.pid') }
-    set :unicorn_roles,  -> { :app }
+    set :unicorn_config_path, -> { File.join(current_path, 'config/unicorn.rb') }
+    set :unicorn_pid_path,    -> { File.join(current_path, 'tmp/pids/unicorn.pid') }
+    set :unicorn_roles,       -> { :app }
   end
 end
 
@@ -10,7 +10,7 @@ namespace :unicorn do
   def start_unicorn
     within current_path do
       info 'Starting Unicorn ...'
-      execute :bundle, :exec, :unicorn_rails, "-c #{fetch(:unicorn_config)} -E #{fetch(:rails_env)} -D"
+      execute :bundle, :exec, :unicorn_rails, "-c #{fetch(:unicorn_config_path)} -E #{fetch(:rails_env)} -D"
     end
   end
 
@@ -26,11 +26,11 @@ namespace :unicorn do
 
   def remove_pid
     info 'Removing pid ...'
-    execute :rm, fetch(:unicorn_pid)
+    execute :rm, fetch(:unicorn_pid_path)
   end
 
   def pid_exists?
-    test("[ -e #{fetch(:unicorn_pid)} ]")
+    test("[ -e #{fetch(:unicorn_pid_path)} ]")
   end
 
   def pid_running?
@@ -38,7 +38,7 @@ namespace :unicorn do
   end
 
   def pid
-    "`cat #{fetch(:unicorn_pid)}`"
+    "`cat #{fetch(:unicorn_pid_path)}`"
   end
 
   desc 'Start Unicorn'

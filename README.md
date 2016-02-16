@@ -1,8 +1,8 @@
-# Unicap
+# Capistrano Unicorn Tasks
 
-[![Gem Version](https://badge.fury.io/rb/unicap.svg)](http://badge.fury.io/rb/unicap)
+[![Gem Version](https://badge.fury.io/rb/capistrano-unicorn-tasks.svg)](http://badge.fury.io/rb/capistrano-unicorn-tasks)
 
-Unicap is capistrano tasks for unicorn with Rails application.
+This gem provides some unicorn tasks for capistrano.
 It just adds three `cap` tasks, `unicorn:start`, `unicorn:stop` and `unicorn:restart`.
 
 ## Installation
@@ -10,7 +10,7 @@ It just adds three `cap` tasks, `unicorn:start`, `unicorn:stop` and `unicorn:res
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'unicap'
+gem 'capistrano-unicorn-tasks'
 ```
 
 And then execute:
@@ -24,7 +24,7 @@ $ bundle
 Add this line to your application's Capfile:
 
 ```ruby
-require 'unicap'
+require 'capistrano/unicorn/tasks'
 ```
 
 That's it.
@@ -37,14 +37,14 @@ namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
   end
-
-  after :publishing, :restart
 end
+
+after 'deploy:publishing', 'deploy:restart'
 ```
 
 ## Contributing
 
-1. Fork it ( https://github.com/kami30k/unicap/fork )
+1. Fork it ( https://github.com/kami-zh/capistrano-unicorn-tasks/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
